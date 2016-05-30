@@ -12,12 +12,13 @@ document.addEventListener('DOMContentLoaded', function () {
 		$("#content-first-access").text(data.firstAccess);
 	}*/
 
+    if (data.title.trim().length < 100) {
+    	$("#content").load("http://localhost:5000/chrome", {title : data.title}, function(data) {
+        	//alter(data);
+        	document.documentElement.innerHTML = data;
+
+		});
+    }
 
 
-	$("#content").load("http://localhost:5000/chrome", {title : data.title}, function(data) {
-        //alter(data);
-        document.documentElement.innerHTML = data;
-
-
-	});
 });
