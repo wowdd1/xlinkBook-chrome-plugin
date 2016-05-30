@@ -20,7 +20,7 @@ chrome.tabs.onUpdated.addListener(checkForValidUrl);
 var articleData = {};
 articleData.error = "加载中...";
 chrome.runtime.onMessage.addListener(function(request, sender, sendRequest){
-	if(request.type!=="cnblog-article-information")
+	if(request.type!=="xlinkBook")
 		return;
 	articleData = request;
 	//alert(articleData.title);

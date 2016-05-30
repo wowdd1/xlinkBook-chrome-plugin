@@ -18,5 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
         //alter(data);
         document.documentElement.innerHTML = data;
 
+
 	});
 });

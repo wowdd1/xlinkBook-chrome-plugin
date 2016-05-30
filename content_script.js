@@ -20,7 +20,7 @@ else{
             var select = window.getSelection().toString();
 
             var msg = {
-				type: "cnblog-article-information",
+				type: "xlinkBook",
 				title : select,
 				postDate : "",
 				author : "",
