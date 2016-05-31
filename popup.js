@@ -1,24 +1,22 @@
-document.addEventListener('DOMContentLoaded', function () {
-	var data = chrome.extension.getBackgroundPage().articleData;
-	/*
-	if(data.error){
-		$("#message").text(data.error);
-		$("#content").hide();
-	}else{
-		$("#message").hide();
-		$("#content-title").text(data.title);
-		$("#content-author").text(data.author);
-		$("#content-date").text(data.postDate);
-		$("#content-first-access").text(data.firstAccess);
-	}*/
+function onPageDetailsReceived(details) {
+	//document.getElementById('output').innerText = details.summary;
 
-    if (data.title.trim().length < 100) {
-    	$("#content").load("http://localhost:5000/chrome", {title : data.title}, function(data) {
-        	//alter(data);
-        	document.documentElement.innerHTML = data;
+    if (details.summary != null && details.summary.trim().length < 100) {
+    	$("#content").load("http://localhost:5000/chrome", {title : details.summary}, function(data) {
+
+    		document.documentElement.innerHTML = data;
 
 		});
     }
 
-
+}
+// When the popup HTML has loaded
+window.addEventListener('load', function(evt) {
+    // Get the event page
+    chrome.runtime.getBackgroundPage(function(eventPage) {
+        // Call the getPageInfo function in the event page, passing in 
+        // our onPageDetailsReceived function as the callback. This injects 
+        // content.js into the current tab's HTML
+        eventPage.getPageDetails(onPageDetailsReceived);
+    });
 });
