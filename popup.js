@@ -2,7 +2,7 @@ function onPageDetailsReceived(details) {
 	//document.getElementById('output').innerText = details.summary;
 
     if (details.summary != null && details.summary.trim().length < 100) {
-    	$("#content").load("http://localhost:5000/chrome", {title : details.summary}, function(data) {
+    	$("#content").load("http://localhost:5000/chrome", {title : details.summary, url : details.url}, function(data) {
 
     		document.documentElement.innerHTML = data;
 
